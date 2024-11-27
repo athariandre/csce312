@@ -1,0 +1,32 @@
+// Name and UIN
+// Andre Athari
+// 633008865
+
+/**
+ * Counts the number of active(1) bits in a 16-bit input and outputs the result as a 5-bit
+ */
+
+CHIP ActiveCounter16 {
+    IN in[16];
+    OUT out[5];
+
+    PARTS:
+    // Put your code here:
+    Add5(a=false, b[1..4]=false, b[0]=in[0], out=w1);
+    Add5(a=w1, b[1..4]=false, b[0]=in[1], out=w2);
+    Add5(a=w2, b[1..4]=false, b[0]=in[2], out=w3);
+    Add5(a=w3, b[1..4]=false, b[0]=in[3], out=w4);
+    Add5(a=w4, b[1..4]=false, b[0]=in[4], out=w5);
+    Add5(a=w5, b[1..4]=false, b[0]=in[5], out=w6);
+    Add5(a=w6, b[1..4]=false, b[0]=in[6], out=w7);
+    Add5(a=w7, b[1..4]=false, b[0]=in[7], out=w8);
+    Add5(a=w8, b[1..4]=false, b[0]=in[8], out=w9);
+    Add5(a=w9, b[1..4]=false, b[0]=in[9], out=w10);
+    Add5(a=w10, b[1..4]=false, b[0]=in[10], out=w11);
+    Add5(a=w11, b[1..4]=false, b[0]=in[11], out=w12);
+    Add5(a=w12, b[1..4]=false, b[0]=in[12], out=w13);
+    Add5(a=w13, b[1..4]=false, b[0]=in[13], out=w14);
+    Add5(a=w14, b[1..4]=false, b[0]=in[14], out=w15);
+    Add5(a=w15, b[1..4]=false, b[0]=in[15], out=out);
+
+}

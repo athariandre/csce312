@@ -1,0 +1,22 @@
+//Name: Andre Athari
+//UIN: 633008865
+
+/**
+ * SA1 (sample) problem B: ShapeChecker.hdl
+ */
+
+CHIP ShapeChecker {
+    
+    IN L, R;
+    OUT KEEP;
+	
+    PARTS:
+    //TODO: finish this chip
+
+    Not(in=L, out=notL);
+    Not(in=R, out=notR);
+    And(a=L, b=R, out=left);
+    And(a=notL, b=notR, out=right);
+    Or(a=left, b=right, out=KEEP);
+    
+}

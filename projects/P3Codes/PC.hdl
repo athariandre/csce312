@@ -1,0 +1,24 @@
+// NAME and UIN
+// Andre Athari
+// 633008865
+
+/**
+ * A 16-bit counter with load and reset control bits.
+ * if      (reset[t] == 1) out[t+1] = 0
+ * else if (load[t] == 1)  out[t+1] = in[t]
+ * else if (inc[t] == 1)   out[t+1] = out[t] + 1  (integer addition)
+ * else                    out[t+1] = out[t]
+ */
+
+CHIP PC {
+    IN in[16],load,inc,reset;
+    OUT out[16];
+ 
+    PARTS:
+    // Put your code here:
+    Inc16(in=outer, out=outerinc);
+    Mux16(a=outer, b=outerinc, sel=inc, out=incchecked);
+    Mux16(a=incchecked, b=in, sel=load, out=loadchecked);
+    Mux16(a=loadchecked, b[0..15] = false, sel=reset, out=checksdone);
+    Register(in=checksdone, load=true, out=out, out=outer);
+}

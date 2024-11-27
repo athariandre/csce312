@@ -1,0 +1,22 @@
+//Name: Andre Athari
+//UIN: 633008865
+
+/**
+ * SA1 (sample) problem A: ColorChecker.hdl
+ */
+
+CHIP ColorChecker {
+    
+    IN S, L, R;
+    OUT KEEP;
+	
+    PARTS:
+    Not(in=S, out=notS);
+    Not(in=L, out=notL);
+    Not(in=R, out=notR);
+    Or(a=L, b=R, out=w1);
+    And(a=notS, b=w1, out=out1);
+    And(a=notL, b=notR, out=w3);
+    And(a=w3, b=S, out=out2);
+    Or(a=out1, b=out2, out=KEEP);
+}

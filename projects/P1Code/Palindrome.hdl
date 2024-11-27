@@ -1,0 +1,24 @@
+//Name and UIN 
+//Andre Athari
+//633008865
+
+/**
+ * Palindrome Detection: 
+ * out = 1 if a palindrome is detected in the sequence of bits "pqrst" 
+ * for example, if sequence "pqrst" is 10101 then out = 1
+ * for example, if sequence "pqrst" is 10110 then out = 0 
+ */
+
+
+CHIP Palindrome {
+    
+    IN p, q, r, s, t;
+    OUT out;
+	
+    PARTS:
+    Xnor(a=p, b=t, out=w1);
+    Xnor(a=q, b=s, out=w2);
+    And(a=w1, b=w2, out=out);
+    
+    
+}

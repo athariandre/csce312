@@ -1,0 +1,13 @@
+//Andre Athari
+//633008865
+
+CHIP Bit {
+    IN in, load;
+    OUT out;
+
+    PARTS:
+    // Put your code here:
+    Mux(a=cout, b=in, sel=load, out=addbit);
+    DFF(in=addbit, out=cout, out=out);
+
+}

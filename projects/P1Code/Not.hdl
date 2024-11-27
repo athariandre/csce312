@@ -1,0 +1,17 @@
+//NAME AND UIN
+//Andre Athari
+//633008865
+/**
+ * Not gate:
+ * out = not in
+ */
+
+CHIP Not {
+    IN in;
+    OUT out;
+
+    PARTS:
+    // Put your code here:
+    Nor(a=in, b=in, out=out);
+    
+}

@@ -1,0 +1,9 @@
+CHIP Neg10{
+    IN in[10];
+    OUT out[10];
+
+    PARTS:
+    Not10(in=in, out=w1);
+    Add10(a=w1, b[0] = true, b[1..9] = false, out=out);
+    
+}

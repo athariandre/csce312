@@ -1,0 +1,21 @@
+// NAME and UIN
+//Andre Athari
+//633008865
+
+/**
+ * And gate: 
+ * out = 1 if (a == 1 and b == 1)
+ *       0 otherwise
+ */
+
+CHIP And {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Not(in=a, out=w1);
+    Not(in=b, out=w2);
+    Or(a=w1, b=w2, out=w3);
+    Not(in=w3, out=out);
+    
+}

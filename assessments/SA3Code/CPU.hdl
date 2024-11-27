@@ -1,0 +1,48 @@
+//Name: Andre Athari
+//UIN: 633008865
+
+/*
+The CPU start code below corresponds to the diagram in the SA3 document.
+The missing connections are labeled with question marks.
+You may need to add additional components to this chip,
+but you won't need to *create* any additional chips to solve the problem.
+Feel free to use any built-in or given chip.
+*/
+
+CHIP CPU {
+
+    IN  In[8], //instruction to execute
+        Reset; //reset signal for PC
+
+    OUT Out[6], //output of R0
+        PCout[6]; //output of PC
+
+    PARTS:
+        // instruction type
+        DMux4Way(in=true, sel=In[6..7], a=add, b=sub, c=jcd, d=inp);        
+
+        //registers
+        Register6(in=inReg, load=loadR0, out=outR0, out=Out, out[5]=outR0pin5);
+        Register6(in=inReg, load=loadR1, out=outR1);
+        Register6(in=inReg, load=loadR2, out=outR2);
+        Register6(in=inReg, load=loadR3, out=outR3);
+
+        //register selection
+        Mux4Way6(a=outR0, b=outR1, c=outR2, d=outR3, sel=In[2..3], out=outSrc1);
+        Mux4Way6(a=outR0, b=outR1, c=outR2, d=outR3, sel=In[0..1], out=outSrc2);
+
+        //register computation/loading
+        AddSub6(a=outSrc1, b=outSrc2, sub=sub, sum=outArithmetic);
+        Mux6(a=outArithmetic, b=In[0..5], sel=inp, out=inReg);
+        Or(a=add, b=sub, out=addOrSub);
+        Or(a=addOrSub, b=inp, out=loadReg);
+
+        DMux4Way(in=loadReg, sel=In[4..5], a=maybeR0, b=loadR1, c=loadR2, d=loadR3);
+        Or(a=inp, b=maybeR0, out=loadR0);
+
+        Not(in=outR0pin5, out=jge);
+        And(a=jge, b=jcd, out=loadPC);
+
+        //program counter
+        PC6(in=In[0..5], load=loadPC, reset=Reset, inc=true, out=PCout);
+} 

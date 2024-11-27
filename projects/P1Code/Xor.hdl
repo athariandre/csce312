@@ -1,0 +1,19 @@
+//NAME AND UIN
+//Andre Athari
+//633008865
+
+/**
+ * Exclusive-or gate:
+ * out = not (a == b)
+ */
+
+CHIP Xor {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Or(a=a, b=b, out=w1);
+    And(a=a,b=b, out=w2);
+    Not(in=w2, out=notw2);
+    And(a=notw2, b=w1, out=out);
+}
